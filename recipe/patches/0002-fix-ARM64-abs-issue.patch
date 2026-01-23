@@ -1,0 +1,28 @@
+From 876d1b0946a94c17829c85379dcbb262fb68ff6e Mon Sep 17 00:00:00 2001
+From: Noureldin <noureldinyosri@google.com>
+Date: Wed, 24 Sep 2025 16:56:43 -0700
+Subject: [PATCH 2/2] fix ARM64 abs issue
+
+---
+ tunits/core/cython/frac.pyx | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/tunits/core/cython/frac.pyx b/tunits/core/cython/frac.pyx
+index 79406f7..aa5aa96 100644
+--- a/tunits/core/cython/frac.pyx
++++ b/tunits/core/cython/frac.pyx
+@@ -85,10 +85,10 @@ cpdef frac float_to_twelths_frac(a) except *:
+         return frac_least_terms(a, 1)
+ 
+     cdef double d = float(a)
+-    cdef long long x = <long long>c_floor(12*d + 0.5)
+-    if abs(12*d - x) > 1e-5:
+-        raise ValueError("Not a twelfth.")
+-
++    cdef double raised_d = 12.0*d
++    cdef long long x = <long long>c_floor(raised_d + 0.5)
++    if not (-1e-5 < raised_d - x < 1e-5):
++        raise ValueError(f"{a} with 12*a={raised_d} Not a twelfth.")
+     return frac_least_terms(x, 12)
+ 
+ 
