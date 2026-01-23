@@ -19,6 +19,11 @@ build:
 requirements:
   build:
     - ${{ compiler("c") }}
+    - if: build_platform != host_platform
+      then:
+        - python
+        - cross-python_${{ host_platform }}
+        - cython
   host:
     - python
     - pip
