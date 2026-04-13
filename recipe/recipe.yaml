@@ -1,5 +1,5 @@
 context:
-  version: "0.0.1"
+  version: "0.0.2"
 
 package:
   name: typedunits
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/quantumlib/TypedUnits/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: c9047d6a13a67c799d27efff6e15be42e94383c44dea76350dbcc445a3c5f0e9
+  sha256: 33b7f3644580dd82c5be0313cb76b64ca296e5c2d19a2b911df26a979d73fb08
   patches:
     - patches/0001-remove-cython-as-a-runtime-dependency.patch
     # backport of https://github.com/quantumlib/TypedUnits/pull/77 (minus irrelevant changes)
