@@ -10,8 +10,6 @@ source:
   sha256: 33b7f3644580dd82c5be0313cb76b64ca296e5c2d19a2b911df26a979d73fb08
   patches:
     - patches/0001-remove-cython-as-a-runtime-dependency.patch
-    # backport of https://github.com/quantumlib/TypedUnits/pull/77 (minus irrelevant changes)
-    - patches/0002-fix-ARM64-abs-issue.patch
 
 build:
   number: 0
