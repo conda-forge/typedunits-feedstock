@@ -14,6 +14,9 @@ source:
 build:
   number: 0
   script:
+    - mkdir version
+    # see https://github.com/quantumlib/TypedUnits/blob/v0.0.2/setup.py#L23-L24
+    - python -c "open('version/version.txt', 'w').write('${{ version }}\n')"
     - python -m pip install . -vv
 
 requirements:
@@ -43,6 +46,9 @@ tests:
         - tunits.core
         - tunits.units_with_dimension
       pip_check: true
+  - package_contents:
+      site_packages:
+        - typedunits-${{ version }}.dist-info/METADATA
   - files:
       source:
         - test/
