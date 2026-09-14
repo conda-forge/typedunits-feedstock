@@ -12,7 +12,7 @@ source:
     - patches/0001-remove-cython-as-a-runtime-dependency.patch
 
 build:
-  number: 0
+  number: 1
   script:
     - mkdir version
     # see https://github.com/quantumlib/TypedUnits/blob/v0.0.2/setup.py#L23-L24
@@ -21,6 +21,7 @@ build:
 
 requirements:
   build:
+    - ${{ stdlib("c") }}
     - ${{ compiler("c") }}
     - if: build_platform != host_platform
       then:
